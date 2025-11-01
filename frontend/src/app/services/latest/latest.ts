@@ -24,7 +24,7 @@ export class LatestService
     return this.httpService.get<ReceivedPacketModel>(API_ENDPOINTS.latest);
   }
 
-  pollLatestPacket(intervalMs = 5000): Observable<ReceivedPacketModel>
+  pollLatestPacket(intervalMs = 30000): Observable<ReceivedPacketModel>
   {
     this.log.info(`Starting polling every ${intervalMs}ms`);
     return timer(0, intervalMs).pipe(

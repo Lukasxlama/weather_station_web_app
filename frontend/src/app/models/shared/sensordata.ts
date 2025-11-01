@@ -4,17 +4,14 @@
 export interface SensorDataModel
 {
     /** Temperature in °C */
-    temperature: number;
+    temperature_c: number;
 
     /** Humidity in % */
-    humidity: number;
+    humidity_pct: number;
 
     /** Pressure in hPa */
-    pressure: number;
+    pressure_hpa: number;
 
-    /** Gas resistance in Ω */
-    gas_resistance: number;
-    
-    /** Unix timestamp (milliseconds since epoch) of the sensor reading */
-    timestamp: string;
+    /** Gas resistance in kΩ */
+    gas_kohms: number;
 }

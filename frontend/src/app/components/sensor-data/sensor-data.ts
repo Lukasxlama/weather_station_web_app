@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import type { OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import type { SensorDataModel } from '../../models/shared/sensordata';
 import { SensorDataItemComponent } from '../sensor-data-item/sensor-data-item';
@@ -14,7 +13,7 @@ import type { ReceivedPacketModel } from '../../models/shared/receivedpacket';
   styleUrl: './sensor-data.css'
 })
 
-export class SensorDataComponent implements OnInit, OnDestroy
+export class SensorDataComponent
 {
   @Input() receivedPacket!: ReceivedPacketModel;
   
@@ -23,58 +22,46 @@ export class SensorDataComponent implements OnInit, OnDestroy
     return this.receivedPacket.sensor_data;
   }
 
-  private intervalId: any;
-
-  ngOnInit()
+  protected getValue(key: string): number | string
   {
-    this.intervalId = setInterval(() => {}, 60_000);
+    return key == 'timestamp'
+      ? this.receivedPacket.timestamp
+      : this.receivedPacket.sensor_data[key as keyof typeof this.receivedPacket.sensor_data]
   }
 
-  ngOnDestroy()
-  {
-    if (this.intervalId) clearInterval(this.intervalId);
-  }
-
-  protected sensorKeys: (keyof SensorDataModel)[] =
+  protected sensorKeys: string[] =
   [
-    'temperature',
-    'humidity',
-    'pressure',
-    'gas_resistance',
+    'temperature_c',
+    'humidity_pct',
+    'pressure_hpa',
+    'gas_kohms',
     'timestamp'
-  ];
+  ] as const;
 
-  protected labels: Record<keyof SensorDataModel, string> =
+  protected labels: Record<string, string> =
   {
-    temperature: 'Temperatur',
-    humidity: 'Luftfeuchtigkeit',
-    pressure: 'Luftdruck',
-    gas_resistance: 'Gaswiderstand',
-    timestamp: 'Timestamp'
-  };
+    temperature_c: 'Temperatur',
+    humidity_pct: 'Luftfeuchtigkeit',
+    pressure_hpa: 'Luftdruck',
+    gas_kohms: 'Gaswiderstand',
+    timestamp: 'Zeitpunkt'
+  } as const;
 
-  protected units: Record<keyof SensorDataModel, string> =
+  protected units: Record<string, string> =
   {
-    temperature: '°C',
-    humidity: '%',
-    pressure: 'hPa',
-    gas_resistance: 'kΩ',
-    timestamp: 'Uhr'
-  };
+    temperature_c: '°C',
+    humidity_pct: '%',
+    pressure_hpa: 'hPa',
+    gas_kohms: 'kΩ',
+    timestamp: ''
+  } as const;
 
-  protected iconMap: Record<keyof SensorDataModel, SensorDataIconEnum> =
+  protected iconMap: Record<string, SensorDataIconEnum> =
   {
-    temperature: SensorDataIconEnum.temperature,
-    humidity: SensorDataIconEnum.humidity,
-    pressure: SensorDataIconEnum.pressure,
-    gas_resistance: SensorDataIconEnum.gas_resistance,
-    timestamp: SensorDataIconEnum.timestamp,
-  };
-
-  get relativeTime(): string
-  {
-    if (!this.receivedPacket?.timestamp) return '';
-    const diffMin = Math.floor((Date.now() - new Date(this.receivedPacket.timestamp).getTime()) / 60000);
-    return diffMin <= 0 ? 'gerade eben' : `vor ${diffMin} Minute${diffMin > 1 ? 'n' : ''}`;
-  }
+    temperature_c: SensorDataIconEnum.temperature,
+    humidity_pct: SensorDataIconEnum.humidity,
+    pressure_hpa: SensorDataIconEnum.pressure,
+    gas_kohms: SensorDataIconEnum.gas_resistance,
+    timestamp: SensorDataIconEnum.timestamp
+  } as const;
 }

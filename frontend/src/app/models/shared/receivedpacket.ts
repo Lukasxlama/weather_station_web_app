@@ -5,21 +5,24 @@ import type { SensorDataModel } from "@app/models/shared/sensordata";
  */
 export interface ReceivedPacketModel
 {
-    /** Sequential packet number */
-    packet_number: number;
-
-    /** ISO-8601 string of when the packet was received */
+    /** ISO-8601 timestamp of the packet */
     timestamp: string;
 
-    /** Received signal strength indicator in dBm */
-    rssi: number;
+    /** Indicates if decoding failed */
+    error: boolean;
 
-    /** Signal-to-noise ratio */
-    snr: number;
+    /** Error type if applicable */
+    error_type?: string | null;
 
-    /** Nested sensor data (if available) */
+    /** Raw hex payload (if error occurred) */
+    raw_hex?: string | null;
+
+    /** RSSI in dBm */
+    rssi_dbm: number;
+
+    /** SNR in dB */
+    snr_db: number;
+
+    /** Nested sensor data */
     sensor_data: SensorDataModel;
-
-    /** Error message string, if any */
-    error?: string;
 }

@@ -82,7 +82,7 @@ export class TrendsComponent implements OnInit, OnDestroy
       this.render(
         {
           bucket_seconds: 0, from: '', to: '',
-          series: { temperature: [], humidity: [], pressure: [], gas_resistance: [] }
+          series: { temperature_c: [], humidity_pct: [], pressure_hpa: [], gas_kohms: [] }
         }
       );
     }
@@ -233,28 +233,28 @@ export class TrendsComponent implements OnInit, OnDestroy
 
     createLine(
       ctxT, 'Temperatur',
-      res.series.temperature,
+      res.series.temperature_c,
       'rgba(255,185,120,0.95)', 'rgba(255,185,120,0.35)', 'rgba(255,185,120,0.03)',
       '°C', { min: -10, max: 40 }
     );
 
     createLine(
       ctxH, 'Luftfeuchtigkeit',
-      res.series.humidity,
+      res.series.humidity_pct,
       'rgba(138,180,248,0.95)', 'rgba(138,180,248,0.25)', 'rgba(138,180,248,0.03)',
       '%'
     );
 
     createLine(
       ctxP, 'Luftdruck',
-      res.series.pressure,
+      res.series.pressure_hpa,
       'rgba(180,140,255,0.95)', 'rgba(180,140,255,0.25)', 'rgba(180,140,255,0.03)',
       'hPa'
     );
 
     createLine(
       ctxG, 'Gaswiderstand',
-      res.series.gas_resistance,
+      res.series.gas_kohms,
       'rgba(90,210,200,0.95)', 'rgba(90,210,200,0.25)', 'rgba(90,210,200,0.03)',
       'Ω'
     );

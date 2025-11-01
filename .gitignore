@@ -1,4 +1,28 @@
-# --- Angular / Build ---
+################################################################################
+# Combined .gitignore for Spring Boot + Angular + Docker + IDEs
+################################################################################
+
+########################################
+# SPRING BOOT / MAVEN / GRADLE
+########################################
+HELP.md
+target/
+build/
+.mvn/wrapper/maven-wrapper.jar
+
+# Ignore all target/build folders except inside src/
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Logs / Temp files
+*.log
+*.tmp
+
+########################################
+# ANGULAR / FRONTEND
+########################################
 frontend/dist/
 frontend/tmp/
 frontend/out-tsc/
@@ -8,57 +32,72 @@ frontend/coverage/
 frontend/libpeerconnection.log
 frontend/testem.log
 
-# --- Node / NPM / Yarn / PNPM ---
+# Node / NPM / Yarn / PNPM
 frontend/node_modules/
 frontend/npm-debug.log*
 frontend/yarn-error.log*
 frontend/pnpm-debug.log*
 
-# --- Python / Flask ---
-backend/__pycache__/
-backend/*.py[cod]
-backend/*.pyc
-backend/*.pyo
-backend/*.pyd
-backend/*.egg-info/
-backend/.eggs/
-backend/.mypy_cache/
-backend/.pytest_cache/
-backend/.venv/
-backend/venv/
-backend/env/
-backend/ENV/
-backend/pip-wheel-metadata/
-
-# SQLite DBs (Backend)
-backend/*.db
-backend/*.sqlite
-backend/*.sqlite3
-
-# --- Docker ---
+########################################
+# DOCKER / ENVIRONMENT
+########################################
 .dockerignore
 docker-compose.override.yml
 .env
-.env.*.local
 .env.local
+.env.*.local
 .envrc
 
-# --- IDEs / Editoren ---
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+########################################
+# IDEs / EDITORS
+########################################
 
+# --- IntelliJ IDEA / JetBrains ---
 .idea/
-.project
+*.iws
+*.iml
+*.ipr
+
+# --- Eclipse / STS ---
+.apt_generated
 .classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# --- NetBeans ---
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# --- VS Code ---
+.vscode
+
+# --- Other Editors ---
 .c9/
 *.launch
-.settings/
 *.sublime-workspace
-.history/*
+.history/
 
-# --- System ---
+########################################
+# SYSTEM / OS
+########################################
 .DS_Store
 Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+########################################
+# MISC
+########################################
+# Backup / temp files
+*~
+*.bak
+*.swp
+*.swo
+*.orig

@@ -55,19 +55,20 @@
                         <table class="table text-center align-middle">
                             <thead>
                                 <tr>
-                                    @for (key of resultKeys; let i = $index; track i)
+                                    @for (col of result.columns; let i = $index; track i)
                                     {
-                                        <th>{{ key }}</th>
+                                        <th>{{ col }}</th>
                                     }
                                 </tr>
                             </thead>
+
                             <tbody>
-                                @for (row of result; let i = $index; track i)
+                                @for (row of result.rows; let r = $index; track r)
                                 {
                                     <tr>
-                                        @for (key of resultKeys; let i = $index; track i)
+                                        @for (cell of row; let c = $index; track c)
                                         {
-                                            <td>{{ row[key] ?? '-'}}</td>
+                                            <td>{{ cell ?? '-'}}</td>
                                         }
                                     </tr>
                                 }

@@ -32,10 +32,16 @@ export class LatestComponent implements OnInit, OnDestroy
       .pipe(takeUntil(this.destroy$))
       .subscribe(
       {
-        next: data => this.receivedPacket = data,
-        error: err => this.log.error(err)
-      }
-    );
+        next: data =>
+        {
+          this.receivedPacket = data;
+        },
+
+        error: err =>
+        {
+          this.log.error(err);
+        }
+      });
   }
 
   ngOnDestroy(): void

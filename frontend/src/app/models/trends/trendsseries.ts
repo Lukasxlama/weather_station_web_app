@@ -1,7 +1,7 @@
 export interface TrendsSeriesModel
 {
-    temperature: { t: string; v: number }[];
-    humidity: { t: string; v: number }[];
-    pressure: { t: string; v: number }[];
-    gas_resistance: { t: string; v: number }[];
+    temperature_c: { t: string; v: number }[];
+    humidity_pct: { t: string; v: number }[];
+    pressure_hpa: { t: string; v: number }[];
+    gas_kohms: { t: string; v: number }[];
 }

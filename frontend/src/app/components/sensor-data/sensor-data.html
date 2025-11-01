@@ -1,20 +1,15 @@
 <div class="sensor-data-container">
     <div class="row g-3 justify-content-center">
-        @for (key of sensorKeys; let i = $index; track i)
+        @for (key of sensorKeys; track key)
         {
             <div class="col-auto">
                 <app-sensor-data-item
                     [name]="labels[key]"
-                    [value]="sensorData[key]"
+                    [value]="getValue(key)"
                     [unit]="units[key]"
                     [icon]="iconMap[key]">
                 </app-sensor-data-item>
             </div>
         }
     </div>
-</div>
-
-<div style="text-align:right">
-    <p>Paket-ID: {{receivedPacket.packet_number}}
-        <br>{{ relativeTime }}</p>
 </div>

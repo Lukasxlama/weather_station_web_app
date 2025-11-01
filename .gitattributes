@@ -1,6 +1,5 @@
 * text=auto eol=lf
 
-# Binär
 *.png  binary
 *.jpg  binary
 *.jpeg binary
@@ -14,7 +13,6 @@
 *.eot  binary
 *.zip  binary
 
-# Shell-/Batch-Skripte mit LF behalten
 *.sh text eol=lf
 *.bash text eol=lf
 *.ps1 text eol=lf

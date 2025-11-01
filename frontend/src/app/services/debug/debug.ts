@@ -3,7 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { tap, catchError, finalize } from 'rxjs/operators';
 
 import { LoggerService } from '@app/services/logger/logger';
-import type { ReceivedPacketModel } from '@app/models/shared/receivedpacket';
+import type { DebugQueryResponse } from '@app/models/debug/debug-response';
 import { HttpService } from '@app/services/http/http';
 import { API_ENDPOINTS } from '@env/api-endpoints';
 
@@ -20,15 +20,15 @@ export class DebugService
     this.log = this.loggerService.withContext('DebugService');
   }
 
-  runQuery(sql: string): Observable<ReceivedPacketModel[]>
+  runQuery(sql: string): Observable<DebugQueryResponse>
   {
     const started = performance.now();
     this.log.info('runQuery: starting');
 
-    return this.httpService.post<ReceivedPacketModel[]>(API_ENDPOINTS.debug, { sql }).pipe(
-      tap((rows) =>
+    return this.httpService.post<DebugQueryResponse>(API_ENDPOINTS.debug, { sql }).pipe(
+      tap((res) =>
         {
-          this.log.info(`runQuery OK: ${rows?.length ?? 0} rows`);
+          this.log.info(`runQuery OK: ${res.rows?.length ?? 0} rows`);
         }
       ),
 
