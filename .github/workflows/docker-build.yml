@@ -1,4 +1,4 @@
-name: Build and Publish Docker Image
+name: Build and Publish Docker Images
 
 on:
   push:
@@ -30,14 +30,12 @@ jobs:
 
       - name: Prepare lowercase owner
         id: prep
-        run: echo "owner_lc=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+        run: echo "OWNER_LC=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
-      - name: Build and push multi-arch image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: |
-            ghcr.io/${{ env.owner_lc }}/weather_station_web_app:latest
-            ghcr.io/${{ env.owner_lc }}/weather_station_web_app:${{ github.run_number }}
+      - name: Build and push images via Docker Compose
+        run: |
+          docker compose build
+          docker tag weather_station_web_app-frontend ghcr.io/${{ env.OWNER_LC }}/weather_station_web_app-frontend:latest
+          docker tag weather_station_web_app-backend ghcr.io/${{ env.OWNER_LC }}/weather_station_web_app-backend:latest
+          docker push ghcr.io/${{ env.OWNER_LC }}/weather_station_web_app-frontend:latest
+          docker push ghcr.io/${{ env.OWNER_LC }}/weather_station_web_app-backend:latest
