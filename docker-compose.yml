@@ -3,7 +3,6 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: weather-backend
     environment:
       SPRING_DATASOURCE_URL: "jdbc:sqlite:/var/lib/weather/weather-data.db"
       MQTT_BROKER_URL: "${MQTT_BROKER_URL}"
@@ -14,13 +13,14 @@ services:
       - weather_db:/var/lib/weather
     ports:
       - "5000:5000"
-
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:5000/health || exit 1"]
       interval: 10s
       timeout: 3s
       retries: 5
       start_period: 10s
+    image: weather-backend:dev
 
   frontend:
     build:
@@ -32,6 +32,8 @@ services:
         condition: service_healthy
     ports:
       - "${FRONTEND_PORT:-8080}:80"
+    restart: unless-stopped
+    image: weather-frontend:dev
 
 volumes:
   weather_db:

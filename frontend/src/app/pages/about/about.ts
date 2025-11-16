@@ -22,7 +22,7 @@ export class AboutComponent implements OnInit, AfterViewInit, OnDestroy
   protected images: StationImageModel[] = [];
   protected activeIndex = 0;
   protected isSwitching = false;
-  
+
   constructor(
     private stationImageService: StationImageService,
     private zone: NgZone
@@ -33,22 +33,22 @@ export class AboutComponent implements OnInit, AfterViewInit, OnDestroy
     this.stationImageService.getImages()
       .pipe(takeUntil(this.destroy$))
       .subscribe(imgs =>
-      {
-        this.images = imgs ?? [];
-        if (this.images.length === 0)
         {
-          this.activeIndex = 0;
-          return;
-        }
+          this.images = imgs ?? [];
+          if (this.images.length === 0)
+          {
+            this.activeIndex = 0;
+            return;
+          }
 
-        if (this.activeIndex >= this.images.length)
-        {
-          this.activeIndex = 0;
+          if (this.activeIndex >= this.images.length)
+          {
+            this.activeIndex = 0;
+          }
         }
-      }
-    );
+      );
   }
-    
+
   ngAfterViewInit(): void
   {
     const element = this.carouselRef?.nativeElement;

@@ -32,10 +32,8 @@ jobs:
         id: prep
         run: echo "OWNER_LC=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
-      - name: Build and push images via Docker Compose
-        run: |
-          docker compose build
-          docker tag weather_station_web_app-frontend ghcr.io/${{ env.OWNER_LC }}/weather_station_web_app-frontend:latest
-          docker tag weather_station_web_app-backend ghcr.io/${{ env.OWNER_LC }}/weather_station_web_app-backend:latest
-          docker push ghcr.io/${{ env.OWNER_LC }}/weather_station_web_app-frontend:latest
-          docker push ghcr.io/${{ env.OWNER_LC }}/weather_station_web_app-backend:latest
+      - name: Build images
+        run: docker compose -f docker-compose.yml -f .ci.yml build
+
+      - name: Push images
+        run: docker compose -f docker-compose.yml -f .ci.yml push

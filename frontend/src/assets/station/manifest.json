@@ -1,33 +1,41 @@
 {
-  "generatedAt": "2025-09-01T14:21:50.017Z",
+  "generatedAt": "2025-11-16T11:20:00.000Z",
   "images": [
     {
-      "src": "assets/station/BME680 Sensor.png",
-      "alt": ""
+      "src": "assets/station/BME680 - Halterung.jpg",
+      "alt": "BME680 Sensor in 3D-gedruckter Halterung"
     },
     {
-      "src": "assets/station/ESP32 Dev Module.png",
-      "alt": ""
+      "src": "assets/station/ESP32 - Controller.jpg",
+      "alt": "ESP32 Controller"
     },
     {
-      "src": "assets/station/Laderegler.png",
-      "alt": ""
+      "src": "assets/station/Innenleben - Gesamtbild.jpg",
+      "alt": "Innenleben der Station – Gesamtansicht"
     },
     {
-      "src": "assets/station/Li-Ion-Akku.png",
-      "alt": ""
+      "src": "assets/station/Laderegler.jpg",
+      "alt": "Laderegler der Station"
     },
     {
-      "src": "assets/station/SSD1306 Display.png",
-      "alt": ""
+      "src": "assets/station/Li-Ion Akku 3.200mAh.jpg",
+      "alt": "Li-Ion Akku 3200 mAh"
     },
     {
-      "src": "assets/station/SX1276 LoRa Transceiver.png",
-      "alt": ""
+      "src": "assets/station/Outdoor - Gesamtbild.jpg",
+      "alt": "Outdoor-Gesamtbild der Station"
     },
     {
-      "src": "assets/station/Solarpanels.png",
-      "alt": ""
+      "src": "assets/station/Raspberry Pi - Middleware.jpg",
+      "alt": "Raspberry Pi als Middleware"
+    },
+    {
+      "src": "assets/station/Solarpanels.jpg",
+      "alt": "Solarpanels der Station"
+    },
+    {
+      "src": "assets/station/SSD1306 - Bildschirm.jpg",
+      "alt": "SSD1306 OLED-Bildschirm"
     }
   ]
 }

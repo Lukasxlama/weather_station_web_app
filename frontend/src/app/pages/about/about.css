@@ -1,3 +1,117 @@
+:root
+{
+  --page-max-width: 1200px;
+  --page-padding-x: clamp(1.5rem, 4vw, 3rem);
+  --page-padding-y: 3rem;
+
+  --radius-xl: 18px;
+  --radius-2xl: 26px;
+
+  --glass-bg: rgba(10, 10, 14, 0.92);
+  --glass-stroke: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 18px 46px rgba(0, 0, 0, 0.55);
+
+  --text-color: #f6f6f8;
+  --text-muted: #d1d1dc;
+}
+
+.about-page
+{
+  min-height: 100vh;
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.about-content
+{
+  max-width: var(--page-max-width);
+  width: 100%;
+  padding: var(--page-padding-y) var(--page-padding-x) 4.5rem;
+}
+
+.about-header
+{
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.about-header h1
+{
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-weight: 600;
+  margin: 0;
+}
+
+.about-grid
+{
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.about-card
+{
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--glass-stroke);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
+    var(--glass-bg);
+  box-shadow: var(--glass-shadow);
+  padding: 1.8rem 2rem 2.2rem;
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  margin: 0 0 1.5rem 1rem;
+}
+
+.span-12 { grid-column: span 12; }
+.span-8  { grid-column: span 8; }
+.span-6  { grid-column: span 6; }
+.span-4  { grid-column: span 4; }
+
+.about-card h2
+{
+  font-size: 1.4rem;
+  margin: 0 0 1rem;
+  font-weight: 600;
+}
+
+.about-card p
+{
+  margin: 0 0 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.about-card p:last-child
+{
+  margin-bottom: 0;
+}
+
+.about-card code
+{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.12rem 0.35rem;
+  border-radius: 999px;
+}
+
+.about-card a
+{
+  color: #9ad0ff;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.about-card a:hover
+{
+  color: #c2e2ff;
+}
+
 .carousel-box
 {
   max-width: 980px;
@@ -83,7 +197,7 @@
 {
   .carousel-box
   {
-    padding: 0 2rem;
+    padding: 0;
     max-width: 100%;
   }
 
@@ -92,5 +206,33 @@
     bottom: .55rem;
     padding: .45rem .7rem;
     gap: .35rem;
+  }
+}
+
+@media (max-width: 768px)
+{
+  .about-grid
+  {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .span-12,
+  .span-8,
+  .span-6,
+  .span-4
+  {
+    grid-column: 1 / -1;
+  }
+
+  .about-card
+  {
+    margin: 0 0 1.5rem 0;
+    padding: 1.4rem 1.5rem 1.8rem;
+  }
+
+  .about-content
+  {
+    padding: 2rem 1.25rem 1rem;
   }
 }

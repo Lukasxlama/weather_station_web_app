@@ -15,4 +15,5 @@ export class PageShellComponent
 {
   @Input() title: string = "<Placeholder>";
   @Input() dividers: 'none' | 'top' | 'bottom' | 'both' = 'both';
+  @Input() disableTitle: boolean = false;
 }

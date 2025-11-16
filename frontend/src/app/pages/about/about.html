@@ -1,153 +1,201 @@
-<app-page-shell [title]="'Über das Projekt'" [dividers]="'both'">    
-    <div class="desc-carousel">
-        <div class="desc-text">
-            <section class="mb-5">
-                <h4>Idee & Motivation</h4>
-                <p>
-                    Kurz gesagt: Aus einer Mischung aus Neugier und Lust auf ein neues Projekt entstand die Idee, etwas Eigenes zu
-                    bauen,
-                    bei dem wir nicht nur Spaß haben, sondern auch eine Menge dazulernen können – und das Ganze idealerweise mit
-                    einem praktischen Nutzen.
-                </p>
-                <p>
-                    Nach einigem Überlegen fiel die Wahl schnell auf eine Outdoor-Wetterstation.
-                    Erste Inspiration und Grundlagen haben wir uns durch YouTube-Videos geholt, um einen Überblick zu bekommen.
-                </p>
-                <p>
-                    Unsere Motivation war es, verlässliche Messwerte zu gewinnen und dabei in möglichst viele spannende Themenfelder
-                    einzutauchen – von Mikroelektronik und Funktechnik bis hin zu Software-Entwicklung und Middleware.
-                </p>
-            </section>
-            
-            <section class="mb-5">
-                <h4>Hardware</h4>
-                <p>
-                    Das Herzstück der Station bildet ein ESP32 Dev Module – ein stromsparender Mikrocontroller mit
-                    genügend Leistung für Sensorabfragen und die drahtlose Datenübertragung.
-                    Angeschlossen ist ein BME680-Sensor, der Temperatur, Luftfeuchtigkeit,
-                    Luftdruck und den Gaswiderstand erfasst.
-                </p>
-                <p>
-                    Die Energieversorgung übernehmen zwei Solarpanels mit jeweils 5 W, die einen
-                    3.200 mAh Li-Ion-Akku laden. Dadurch arbeitet die Station völlig autark –
-                    sogar in den dunkleren Wintermonaten.
-                </p>
-                <p>
-                    Untergebracht ist die Elektronik in einem wetterfesten Outdoor-Gehäuse, ergänzt durch
-                    eine 3D-gedruckte Halterungen für den BME680. Damit ist die Station robust genug,
-                    um ganzjährig Wind und Wetter standzuhalten.
-                </p>
-            </section>
-            
-            <section class="mb-5">
-                <h4>ESP32 Code</h4>
-                <p>
-                    Der Code für den ESP32 ist modular aufgebaut. Sensor, Display und LoRa-Funk sind in eigene Manager ausgelagert
-                    und über eine zentrale Konfiguration steuerbar. So bleibt das Projekt übersichtlich und leicht erweiterbar.
-                </p>
-                <p>
-                    Alle Einstellungen wie aktivierte Module, Pins und Betriebsarten werden in einer <code>Config.hpp</code>
-                    festgelegt. Dadurch lässt sich der Build komplett anpassen, ohne den eigentlichen Code ändern zu müssen.
-                </p>
-                <p>
-                    Die Komponenten sind einfach, aber zuverlässig umgesetzt. In der <code>main.cpp</code> werden sie
-                    zusammengeführt, initialisiert und nacheinander ausgeführt. So liest der ESP32 die Sensordaten aus, zeigt sie
-                    bei Bedarf auf dem Display an und sendet sie über LoRa weiter.
-                </p>
-                <p>
-                    Quellcode: <a href="https://github.com/Lukasxlama/weather_station_esp32">weather_station_esp32</a>
-                </p>
-            </section>
-            
-            <section class="mb-5">
-                <h4>Middleware (LoRa → MQTT)</h4>
-                <p>
-                    Die Middleware läuft auf dem Raspberry&nbsp;Pi und verbindet den LoRa-Empfänger mit einem MQTT-Broker.
-                    Sie ist bewusst schlank gehalten und trennt klar zwischen Empfang, Verarbeitung und Weitergabe der Daten.
-                </p>
-                <p>
-                    Alle Einstellungen wie MQTT-Host, Pins und Logging werden zentral in einer <code>.env</code>-Datei konfiguriert.
-                    Installation und Betrieb erfolgen bequem über die mitgelieferten Skripte, die automatisch ein virtuelles
-                    Environment
-                    und einen systemd-Service einrichten.
-                </p>
-                <p>
-                    Über MQTT werden die Wetterdaten in strukturierter Form als JSON und einzeln pro Feld bereitgestellt. So stehen
-                    sie
-                    sowohl für Home Assistant als auch für das Backend der Website direkt zur Verfügung.
-                </p>
-                <p>
-                    Quellcode: <a href="https://github.com/Lukasxlama/weather_station_middleware">weather_station_middleware</a>
-                </p>
-            </section>
-
-            <section class="mb-5">
-                <h4>🌱 Installation im Garten</h4>
-                <p>
-                    Die Station ist auf einem stabilen Baumstumpf montiert, erhöht durch eine PVC-Röhre,
-                    um Störungen durch Bodennähe zu vermeiden. So werden die Messwerte präziser und
-                    repräsentativer für die Umgebung.
-                </p>
-                <p>
-                    Im Alltag liefert die Station <b>verlässliche Live-Daten</b>,
-                    die nicht nur spannend zu beobachten sind, sondern auch ganz praktisch genutzt werden können –
-                    etwa um Lüften besser zu timen oder Wetterumschwünge früh zu bemerken.
-                </p>
-            </section>
-            
-            <section>
-                <h4>🚀 Fazit</h4>
-                <p>
-                    Aus einer Idee ist ein vollständiges System geworden:
-                    eine <b>energieautarke, smarte Wetterstation</b>, die durch
-                    <strong>Do-it-yourself</strong>-Ansatz, moderne Technologien und
-                    robuste Bauweise überzeugt.
-                </p>
-                <p>
-                    Das Projekt wächst weiter – von zusätzlichen Sensoren bis hin zu
-                    intelligenten Auswertungen mit Machine Learning sind viele Erweiterungen denkbar.
-                    Und genau das macht es so spannend!
-                </p>
-            </section>
-        </div>
-
-        <app-divider></app-divider>
-        <h2 class="mb-4">🖼️ Bilder</h2>
-        <div class="carousel-box mt-4">
+<app-page-shell [disableTitle]="true" [dividers]="'both'">
+<div class="about-page">
+  <div class="about-content">
+    <header class="about-header">
+      <h1>Über das Projekt</h1>
+    </header>
+    <main>
+      <div class="about-grid">
+        <section class="about-card span-4">
+          <h2>Idee und Motivation</h2>
+          <p>
+            Alles hat mit einer einfachen Frage angefangen:
+            <b>„Können wir eine eigene Wetterstation bauen – und dabei möglichst viel lernen?“</b><br>
+            Die Antwort war schnell klar: Ja!
+          </p>
+          <p>
+            Die Motivation war, dass wir unser theoretisches Wissen endlich einmal praktisch umsetzen wollten.
+            Statt nur Konzepte zu lernen, wollten wir ein Projekt, bei dem wir echte Herausforderungen lösen müssen:
+            Bauteile auswählen, zusammenbauen und programmieren.
+          </p>
+          <p>
+            Nach ein paar YouTube-Recherchen war uns bewusst, wie spannend das ganze Thema werden kann:
+            Elektronik, Sensoren, Funktechnik, Software – alles in einem einzigen System vereint.
+            Und das Beste: Am Ende entsteht etwas, das echte, nützliche Messdaten liefert.
+          </p>
+        </section>
+        <section class="about-card span-8">
+          <h2>Hardware</h2>
+          <p>
+            Im Herzen der Station arbeitet ein ESP32 – ein stromsparender Mikrocontroller mit genug Leistung, um
+            die Sensordaten auszulesen, das Display zu steuern und die Informationen per LoRa zu übertragen.
+          </p>
+          <p>
+            Der verwendete Sensor ist ein <strong>BME680</strong>. Er misst:
+          </p>
+          <ul>
+            <li>Temperatur</li>
+            <li>Luftfeuchtigkeit</li>
+            <li>Luftdruck</li>
+            <li>Luftqualität</li>
+          </ul>
+          <p>
+            <strong>Energieversorgung:</strong><br>
+            Zwei kleine 5-Watt-Solarpanels laden einen 3.200 mAh Li-Ion-Akku. Dadurch läuft die Station komplett
+            autark – sogar im Winter.
+          </p>
+          <p>
+            <strong>Outdoor-Gehäuse:</strong><br>
+            Die Elektronik sitzt in einem wetterfesten Gehäuse. Für den Sensor gibt es eine eigens entwickelte,
+            3D-gedruckte Halterung. Damit bleibt alles zuverlässig vor Regen, Wind und Kälte geschützt.
+          </p>
+        </section>
+        <section class="about-card span-6">
+          <h2>ESP32 Software (Sensordaten &rarr; LoRa)</h2>
+          <p>
+            Die Hardware alleine bringt uns natürlich noch nicht weiter – ohne passende Software wäre sie
+            kaum mehr als ein Haufen Bauteile. Also ging es an die Programmierung. Dafür haben wir uns
+            bewusst gegen die Arduino IDE entschieden. Sie ist zwar ideal für Anfänger, aber wer einmal mit
+            Visual Studio Code gearbeitet hat, möchte diese Flexibilität nicht mehr missen.
+          </p>
+          <p>
+            Deshalb setzen wir auf PlatformIO in Kombination mit VS Code. Die Umgebung bietet uns eine
+            sauber strukturierte Projektverwaltung, einen professionellen Build-Prozess und volle Kontrolle
+            über Abhängigkeiten. Die Software selbst ist in C++ geschrieben und modular aufgebaut:
+            Sensor, Display und LoRa-Modul leben jeweils in eigenen Klassen, während eine zentrale
+            <code>Config.hpp</code> alle Parameter zusammenhält.
+          </p>
+          <p>
+            Ein wichtiger Teil der Software ist außerdem das Energiemanagement. Damit die Wetterstation auch
+            über lange Zeiträume autark laufen kann, versetzen wir den ESP32 nach jeder Mess- und
+            Übertragungsphase in den Deep-Sleep-Modus. Dadurch sinkt der Energieverbrauch drastisch, und das
+            gesamte System kann selbst mit einer kleinen Solarzelle und einem kompakten Akku – auch im Winter –
+            zuverlässig betrieben werden.
+          </p>
+          <p>
+            In der <code>main.cpp</code> werden schließlich alle Module initialisiert, die Messwerte erfasst,
+            bei Bedarf auf dem Display ausgegeben und anschließend zuverlässig per LoRa übertragen.
+          </p>
+          <p>
+            Der Quellcode ist auf GitHub verfügbar und kann frei verwendet werden:
+            <a href="https://github.com/Lukasxlama/weather_station_esp32" target="_blank" rel="noopener">
+              weather_station_esp32
+            </a>
+          </p>
+        </section>
+        <section class="about-card span-6">
+          <h2>Middleware (LoRa &rarr; MQTT)</h2>
+          <p>
+            Nachdem die Messwerte den ESP32 verlassen haben, ist die Reise noch nicht vorbei. Die Rohdaten kommen
+            zunächst über LoRa beim Empfänger im Haus an – doch mit diesen Daten kann ein Smart-Home-System
+            wie Home Assistant noch nicht viel anfangen. Also brauchen wir eine Art „Dolmetscher“, der die
+            Funksignale entgegennimmt, richtig interpretiert und in ein Format übersetzt, das überall
+            weiterverarbeitet werden kann. Genau diese Aufgabe übernimmt unsere Middleware auf einem
+            Raspberry Pi.
+          </p>
+          <p>
+            Die Software lauscht auf eingehende LoRa-Pakete, prüft deren Inhalt und wandelt die Messwerte in
+            klar strukturierte JSON-Daten um. Diese werden anschließend per MQTT an einen Broker gesendet –
+            eine Art zentrale Datenverteilstation im Heimnetz. Dadurch können verschiedenste Systeme wie
+            Home Assistant, Dashboards oder selbstgeschriebene Anwendungen (wie diese hier!) problemlos auf die Werte
+            zugreifen.
+          </p>
+          <p>
+            Konfigurationen wie MQTT-Zugangsdaten, Radio-Pins oder Logging-Einstellungen liegen übersichtlich
+            in einer <code>.env</code>-Datei, sodass die Middleware leicht angepasst werden kann, ohne den
+            eigentlichen Code ändern zu müssen. Installationsskripte richten automatisch alles Nötige ein, wodurch die
+            Software zuverlässig im Hintergrund läuft – auch nach einem Neustart des Raspberry Pi.
+          </p>
+          <p>
+            Der Quellcode ist selbstverständlich wieder auf GitHub zu finden und kann bei Bedarf frei angepasst und
+            weiterentwickelt werden:
+            <a href="https://github.com/Lukasxlama/weather_station_middleware" target="_blank" rel="noopener">
+              weather_station_middleware
+            </a>
+          </p>
+        </section>
+        <section class="about-card span-12">
+          <h2>Frontend (MQTT → SQLite → Web-App)</h2>
+          <p>
+            Sobald die Wetterdaten per MQTT im Heimnetz ankommen, sollen sie nicht nur gespeichert, sondern
+            auch anschaulich dargestellt werden. Dafür nutzen wir ein eigenes Web-Frontend, das sowohl
+            Datenbank als auch Visualisierung übernimmt – und damit den letzten Schritt der Pipeline
+            komplett macht.
+          </p>
+          <p>
+            Im Hintergrund läuft ein kleines Spring-Boot-Backend, das die empfangenen Messwerte entgegennimmt
+            und in einer SQLite-Datenbank speichert. Dadurch lassen sich historische Daten, Trends und
+            Diagramme auch über lange Zeiträume hinweg abrufen. Eine klare REST-API stellt diese Informationen
+            anschließend dem Angular-Frontend zur Verfügung.
+          </p>
+          <p>
+            Für die Grafiken setzen wir auf Chart.js, denn damit lassen sich die verschiedenen Messwerte übersichtlich
+            und leicht verständlich visualisieren. Egal ob Temperatur, Luftfeuchtigkeit oder Luftqualität – die Daten
+            werden automatisch aktualisiert und ansprechend dargestellt.
+          </p>
+          <p>
+            Damit alles reibungslos miteinander kommuniziert, läuft ein Nginx-Reverse-Proxy vor dem Backend,
+            der die REST-API unter <code>/api</code> bereitstellt und gleichzeitig das Angular-Frontend
+            ausliefert. Das Ergebnis ist eine moderne, schnelle und gut strukturierte Web-Anwendung, die sich
+            auf jedem Gerät bedienen lässt.
+          </p>
+          <p>
+            Für ein konsistentes Layout setzen wir im Frontend zusätzlich auf Bootstrap. Dadurch passt sich
+            die gesamte Oberfläche automatisch an unterschiedliche Bildschirmgrößen an – vom Smartphone bis
+            zum großen Monitor.
+          </p>
+          <p>
+            Für den Betrieb setzen wir komplett auf Docker: sowohl Backend als auch Frontend lassen sich über
+            eigene Dockerfiles bauen und mit einer <code>docker-compose.yml</code> bequem starten. Selbst die
+            CI-Pipeline ist integriert – ein GitHub Workflow baut die Anwendung automatisch neu, sobald Änderungen
+            am Code vorgenommen werden.
+          </p>
+          <p>
+            Der vollständige Quellcode der Web-App ist wie immer frei zugänglich:
+            <a href="https://github.com/Lukasxlama/weather_station_web_app" target="_blank" rel="noopener">
+              weather_station_web_app
+            </a>
+          </p>
+        </section>
+        <section class="about-card span-12">
+          <h2>Bilder</h2>
+          <div class="carousel-box mt-4">
             <div #stationCarouselEl id="stationCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel"
-                data-bs-touch="true" data-bs-interval="3000">
-
-                <div class="carousel-viewport position-relative">
-                    <div class="carousel-inner">
-                        @for (img of images; let i = $index; track i) {
-                        <div class="carousel-item" [class.active]="i === 0">
-                            <img [src]="img.src" [alt]="img.alt" class="carousel-img" loading="lazy">
-                        </div>
-                        }
+                 data-bs-touch="true" data-bs-interval="3000">
+              <div class="carousel-viewport position-relative">
+                <div class="carousel-inner">
+                  @for (img of images; let i = $index; track i)
+                  {
+                    <div class="carousel-item" [class.active]="i === 0">
+                      <img [src]="img.src" [alt]="img.alt" class="carousel-img" loading="lazy">
                     </div>
-
-                    @if (images.length)
-                    {
-                    <div class="caption-glass" [class.is-switching]="isSwitching">
-                        <h5 class="m-0 text-truncate">
-                            {{ images[activeIndex].title }}
-                        </h5>
-                    </div>
-                    }
+                  }
                 </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#stationCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-
-                <button class="carousel-control-next" type="button" data-bs-target="#stationCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                @if (images.length)
+                {
+                  <div class="caption-glass" [class.is-switching]="isSwitching">
+                    <h5 class="m-0 text-truncate">
+                      {{ images[activeIndex].title }}
+                    </h5>
+                  </div>
+                }
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#stationCarousel"
+                      data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#stationCarousel"
+                      data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-        </div>
-    </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
 </app-page-shell>

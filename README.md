@@ -1,7 +1,7 @@
 # Weather Station Web App (Angular + Spring Boot)
 
 Full-stack web interface for the IoT weather station ecosystem.  
-This application provides a **Spring Boot backend** for data persistence and REST APIs, and an **Angular frontend** for visualization, trend analysis, and developer debugging — forming the final component in the data chain from **ESP32 → LoRa → MQTT → Web**.
+This application provides a **Spring Boot backend** for data persistence and REST APIs, and an **Angular frontend** for visualization and trend analysis — forming the final component in the data chain from **ESP32 → LoRa → MQTT → Web**.
 
 ---
 
@@ -10,12 +10,10 @@ This application provides a **Spring Boot backend** for data persistence and RES
 - **Spring Boot REST API**
   - `/api/latest` → latest received sensor data packet
   - `/api/trends` → time-based historical data queries
-  - `/api/debug` → local SQL viewer for diagnostics
 
 - **Angular Frontend**
   - Real-time sensor data visualization (temperature, humidity, pressure, gas resistance)
   - Interactive charts with zoom & pan (Chart.js + Zoom Plugin)
-  - Developer “Debug Console” for SQL queries
   - Aurora-style responsive dark theme
 
 - **SQLite Database** – simple, local data storage managed by Spring Boot
@@ -81,8 +79,6 @@ The backend automatically creates a local SQLite database (`weather.db`) inside 
 |-----------|---------|-------------|
 | `/api/latest` | GET | Retrieve the most recent weather packet |
 | `/api/trends?from=...&to=...` | GET | Retrieve historical measurements for a given time range |
-| `/api/debug` | POST | Execute safe, read-only SQL queries for diagnostics |
-
 ---
 
 ## Environment Configuration (.env)

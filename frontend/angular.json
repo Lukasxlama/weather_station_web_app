@@ -33,8 +33,6 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-              "node_modules/codemirror/lib/codemirror.css",
-              "node_modules/codemirror/theme/material-darker.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -49,7 +47,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              
+
               "budgets": [
                 {
                   "type": "initial",
@@ -107,8 +105,6 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-              "node_modules/codemirror/lib/codemirror.css",
-              "node_modules/codemirror/theme/material-darker.css",
               "src/styles.css"
             ],
             "scripts": [

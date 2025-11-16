@@ -9,4 +9,4 @@ import { BackgroundComponent } from "@app/components/background/background";
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App { protected readonly title = signal('Wetterstation'); }
+export class App { protected readonly title = signal('weather-station'); }

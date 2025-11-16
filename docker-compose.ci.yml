@@ -1,0 +1,5 @@
+services:
+  backend:
+    image: ghcr.io/${OWNER_LC}/weather_station_web_app-backend:latest
+  frontend:
+    image: ghcr.io/${OWNER_LC}/weather_station_web_app-frontend:latest
