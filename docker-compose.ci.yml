@@ -1,5 +1,12 @@
 services:
   backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     image: ghcr.io/${OWNER_LC}/weather_station_web_app-backend:latest
+
   frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     image: ghcr.io/${OWNER_LC}/weather_station_web_app-frontend:latest
