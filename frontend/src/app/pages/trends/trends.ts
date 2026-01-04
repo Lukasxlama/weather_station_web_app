@@ -256,7 +256,7 @@ export class TrendsComponent implements OnInit, OnDestroy
       ctxG, 'Gaswiderstand',
       res.series.gas_kohms,
       'rgba(90,210,200,0.95)', 'rgba(90,210,200,0.25)', 'rgba(90,210,200,0.03)',
-      'Ω'
+      'kΩ'
     );
   }
 
